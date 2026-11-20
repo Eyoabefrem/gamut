@@ -9,7 +9,7 @@ import PaletteStrip from '../components/PaletteStrip'
 // Circles with crop marks and registration targets, the way a press proof is marked.
 function PressProof() {
   return (
-    <svg viewBox="0 0 460 460" className="w-full max-w-md mx-auto" role="img" aria-label="Cyan, magenta and yellow circles overlapping inside print crop marks">
+    <svg viewBox="0 0 460 460" className="w-full max-w-[16rem] sm:max-w-md mx-auto" role="img" aria-label="Cyan, magenta and yellow circles overlapping inside print crop marks">
       <g stroke="var(--ink)" strokeWidth="2" fill="none">
         <path d="M20 64V20h44M396 20h44v44M440 396v44h-44M64 440H20v-44" />
         <circle cx="230" cy="34" r="10" /><path d="M230 14v40M210 34h40" />
@@ -24,14 +24,14 @@ function PressProof() {
   )
 }
 
-const Plate = ({ children }) => <div className="h-36 border-2 border-[var(--ink)] mb-5 overflow-hidden flex">{children}</div>
+const Plate = ({ children }) => <div className="h-28 sm:h-36 border-2 border-[var(--ink)] mb-5 overflow-hidden flex">{children}</div>
 const features = [
   ['Pull colors from a photo', 'Drop in an image and Gamut finds the colors that carry it, ready to refine like any other palette.',
     <Plate>{['#264653', '#2a9d8f', '#e9c46a', '#f4a261', '#e76f51'].map((c) => <span key={c} className="flex-1" style={{ background: c }} />)}</Plate>],
   ['Check every pairing', 'See the contrast ratio between any two colors against accessibility guidelines, and preview the palette with color-blind vision.',
-    <Plate><span className="flex-1 grid place-items-center" style={{ background: '#264653', color: '#e9c46a' }}><b className="display text-4xl">Aa</b></span><span className="flex-1 grid place-items-center display text-3xl">7.2:1</span></Plate>],
+    <Plate><span className="flex-1 grid place-items-center" style={{ background: '#264653', color: '#e9c46a' }}><b className="display text-3xl sm:text-4xl">Aa</b></span><span className="flex-1 grid place-items-center display text-2xl sm:text-3xl">7.2:1</span></Plate>],
   ['Export anywhere', 'Copy CSS variables, a Tailwind theme or JSON, or save the palette as an image to share.',
-    <Plate><code className="p-4 text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>:root {'{'}<br />&nbsp;&nbsp;--color-1: #264653;<br />&nbsp;&nbsp;--color-2: #2a9d8f;<br />{'}'}</code></Plate>],
+    <Plate><code className="p-3 sm:p-4 text-xs sm:text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>:root {'{'}<br />&nbsp;&nbsp;--color-1: #264653;<br />&nbsp;&nbsp;--color-2: #2a9d8f;<br />{'}'}</code></Plate>],
 ]
 
 export default function Landing() {
@@ -39,12 +39,12 @@ export default function Landing() {
     <div>
       <Header />
       <main className="max-w-6xl mx-auto px-5 sm:px-8">
-        <section className="grid lg:grid-cols-[1.15fr_1fr] gap-10 items-center pt-14 pb-14 sm:pt-20">
+        <section className="grid lg:grid-cols-[1.15fr_1fr] gap-8 sm:gap-10 items-center pt-10 pb-10 sm:pt-20 sm:pb-14">
           <div>
-            <p className="font-semibold" style={{ color: 'var(--muted)' }}>A palette studio for people who care how color behaves</p>
-            <h1 className="display text-[clamp(2.5rem,5.6vw,4.9rem)] mt-5"><Words text="Palettes that hold together" /></h1>
-            <p className="text-xl max-w-lg mt-7" style={{ color: 'var(--muted)' }}>Generate, lock and refine colors in your browser. Check contrast, preview color-blind vision, and export to CSS, Tailwind or an image.</p>
-            <div className="flex flex-wrap gap-4 mt-9">
+            <p className="font-semibold text-sm sm:text-base" style={{ color: 'var(--muted)' }}>A palette studio for people who care how color behaves</p>
+            <h1 className="display text-[clamp(2rem,5.6vw,4.9rem)] mt-4 sm:mt-5"><Words text="Palettes that hold together" /></h1>
+            <p className="text-base sm:text-xl max-w-lg mt-5 sm:mt-7" style={{ color: 'var(--muted)' }}>Generate, lock and refine colors in your browser. Check contrast, preview color-blind vision, and export to CSS, Tailwind or an image.</p>
+            <div className="flex flex-wrap gap-3 sm:gap-4 mt-7 sm:mt-9">
               <Link to="/studio" className="btn">Open the studio</Link>
               <a href="#try" className="btn btn-ghost">Try it below</a>
             </div>
@@ -53,36 +53,36 @@ export default function Landing() {
         </section>
         <ColorBar />
 
-        <section id="try" className="py-16 scroll-mt-4">
+        <section id="try" className="py-10 sm:py-16 scroll-mt-4">
           <Reveal>
-            <p className="mb-4 font-semibold" style={{ color: 'var(--muted)' }}>Press the space bar. Lock the colors you want to keep.</p>
+            <p className="mb-4 font-semibold text-sm sm:text-base" style={{ color: 'var(--muted)' }}>Press the space bar or tap Generate. Lock the colors you want to keep.</p>
             <PaletteStrip className="md:h-[30rem]" />
           </Reveal>
         </section>
 
-        <section className="py-20 border-t-2 border-[var(--ink)]">
+        <section className="py-12 sm:py-20 border-t-2 border-[var(--ink)]">
           <Reveal>
-            <p className="display text-3xl sm:text-5xl max-w-4xl">A good palette isn’t five nice colors. It’s five colors that agree.</p>
-            <p className="text-lg max-w-xl mt-8" style={{ color: 'var(--muted)' }}>Gamut gives every color a job. Lighter ones carry the page, darker ones carry the text, and one or two do the shouting. You see how they work together before you commit.</p>
+            <p className="display text-2xl sm:text-3xl md:text-5xl max-w-4xl">A good palette isn't five nice colors. It's five colors that agree.</p>
+            <p className="text-base sm:text-lg max-w-xl mt-6 sm:mt-8" style={{ color: 'var(--muted)' }}>Gamut gives every color a job. Lighter ones carry the page, darker ones carry the text, and one or two do the shouting. You see how they work together before you commit.</p>
           </Reveal>
         </section>
 
-        <section className="grid md:grid-cols-3 gap-10 py-16 border-t-2 border-[var(--ink)]">
+        <section className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 py-10 sm:py-16 border-t-2 border-[var(--ink)]">
           {features.map(([t, d, plate], i) => (
             <Reveal key={t} delay={i * 0.1}>
-              <article>{plate}<h2 className="display text-2xl">{t}</h2><p className="mt-3 text-lg" style={{ color: 'var(--muted)' }}>{d}</p></article>
+              <article>{plate}<h2 className="display text-xl sm:text-2xl">{t}</h2><p className="mt-2 sm:mt-3 text-base sm:text-lg" style={{ color: 'var(--muted)' }}>{d}</p></article>
             </Reveal>
           ))}
         </section>
       </main>
 
       <section style={{ background: 'var(--ink)', color: 'var(--paper)' }}>
-        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-20 flex flex-wrap items-center justify-between gap-8">
-          <h2 className="display text-4xl sm:text-6xl max-w-2xl">Keep the ones you love</h2>
+        <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12 sm:py-20 flex flex-wrap items-center justify-between gap-6 sm:gap-8">
+          <h2 className="display text-3xl sm:text-4xl md:text-6xl max-w-2xl">Keep the ones you love</h2>
           <Link to="/studio" className="btn !bg-[var(--m)] !text-[#111] !border-[var(--paper)]">Open the studio</Link>
         </div>
       </section>
-      <footer className="max-w-6xl mx-auto px-5 sm:px-8 py-8">
+      <footer className="max-w-6xl mx-auto px-5 sm:px-8 py-6 sm:py-8">
         <ColorBar />
         <div className="flex flex-wrap items-center justify-between gap-4 text-sm mt-6" style={{ color: 'var(--muted)' }}>
           <Logo size={22} /><span>Gamut is a color tool. Set in Syne and Hanken Grotesk.</span>

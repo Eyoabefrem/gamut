@@ -33,39 +33,39 @@ export default function Library() {
   return (
     <div>
       <Header />
-      <main className="max-w-6xl mx-auto px-5 sm:px-8 py-10">
-        <h1 className="display text-5xl sm:text-6xl">Library</h1>
-        <p className="mt-3 text-lg" style={{ color: 'var(--muted)' }}>{user ? `Palettes saved to ${user.email}.` : 'Palettes saved in this browser.'}</p>
+      <main className="max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-10">
+        <h1 className="display text-4xl sm:text-5xl md:text-6xl">Library</h1>
+        <p className="mt-3 text-base sm:text-lg" style={{ color: 'var(--muted)' }}>{user ? `Palettes saved to ${user.email}.` : 'Palettes saved in this browser.'}</p>
 
-        {!loading && !user && configured && <p className="border-2 border-[var(--ink)] p-4 mt-6 font-semibold">Log in to keep your palettes on every device. <Link to="/login" className="underline underline-offset-4">Log in</Link></p>}
-        {user && local.length > 0 && <p className="border-2 border-[var(--ink)] p-4 mt-6 font-semibold">You have {local.length} {local.length === 1 ? 'palette' : 'palettes'} saved in this browser. <button onClick={importLocal} className="underline underline-offset-4">Import them to your account</button></p>}
-        {err && <p role="alert" className="mt-4 font-semibold" style={{ color: 'var(--m)' }}>{err}</p>}
-        <p className="h-6 mt-3 font-semibold" role="status">{note}</p>
+        {!loading && !user && configured && <p className="border-2 border-[var(--ink)] p-3 sm:p-4 mt-6 font-semibold text-sm sm:text-base">Log in to keep your palettes on every device. <Link to="/login" className="underline underline-offset-4">Log in</Link></p>}
+        {user && local.length > 0 && <p className="border-2 border-[var(--ink)] p-3 sm:p-4 mt-6 font-semibold text-sm sm:text-base">You have {local.length} {local.length === 1 ? 'palette' : 'palettes'} saved in this browser. <button onClick={importLocal} className="underline underline-offset-4">Import them to your account</button></p>}
+        {err && <p role="alert" className="mt-4 font-semibold text-sm sm:text-base" style={{ color: 'var(--m)' }}>{err}</p>}
+        <p className="h-6 mt-3 font-semibold text-sm sm:text-base" role="status">{note}</p>
 
         {!items.length ? (
-          <div className="border-2 border-[var(--ink)] p-10 mt-4 text-center">
-            <p className="display text-3xl">Nothing saved yet</p>
-            <p className="mt-2" style={{ color: 'var(--muted)' }}>Make a palette in the studio and press Save.</p>
+          <div className="border-2 border-[var(--ink)] p-8 sm:p-10 mt-4 text-center">
+            <p className="display text-2xl sm:text-3xl">Nothing saved yet</p>
+            <p className="mt-2 text-sm sm:text-base" style={{ color: 'var(--muted)' }}>Make a palette in the studio and press Save.</p>
             <Link to="/studio" className="btn mt-6">Open the studio</Link>
           </div>
         ) : (
-          <ul className="grid sm:grid-cols-2 gap-6 mt-4">
+          <ul className="grid sm:grid-cols-2 gap-4 sm:gap-6 mt-4">
             {items.map((p) => (
               <li key={p.id} className="border-2 border-[var(--ink)]">
-                <Link to={`/studio#${p.colors.map((c) => c.slice(1)).join('-')}`} aria-label={`Open ${p.name}`} className="flex h-32">
+                <Link to={`/studio#${p.colors.map((c) => c.slice(1)).join('-')}`} aria-label={`Open ${p.name}`} className="flex h-28 sm:h-32">
                   {p.colors.map((c, i) => <span key={i} className="flex-1" style={{ background: c }} />)}
                 </Link>
-                <div className="p-4 border-t-2 border-[var(--ink)]">
+                <div className="p-3 sm:p-4 border-t-2 border-[var(--ink)]">
                   <div className="flex items-center justify-between gap-3">
-                    <span><b className="display text-xl block">{p.name}</b><span className="text-sm" style={{ color: 'var(--muted)' }}>{new Date(p.created_at).toLocaleDateString()}</span></span>
-                    <button onClick={() => remove(p.id)} aria-label={`Delete ${p.name}`}><Trash2 size={18} /></button>
+                    <span className="min-w-0"><b className="display text-lg sm:text-xl block truncate">{p.name}</b><span className="text-xs sm:text-sm" style={{ color: 'var(--muted)' }}>{new Date(p.created_at).toLocaleDateString()}</span></span>
+                    <button onClick={() => remove(p.id)} aria-label={`Delete ${p.name}`} className="p-1 shrink-0"><Trash2 size={18} /></button>
                   </div>
                   {user && (
                     <div className="flex flex-wrap gap-2 mt-3">
-                      <button onClick={() => toggle(p)} className="flex items-center gap-1.5 border-2 border-[var(--ink)] px-3 py-1.5 text-sm font-bold" style={p.is_public ? { background: 'var(--y)', color: '#111' } : {}}>
+                      <button onClick={() => toggle(p)} className="flex items-center gap-1.5 border-2 border-[var(--ink)] px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-bold" style={p.is_public ? { background: 'var(--y)', color: '#111' } : {}}>
                         {p.is_public ? <Globe size={14} /> : <Lock size={14} />}{p.is_public ? 'Public' : 'Private'}
                       </button>
-                      {p.is_public && <button onClick={() => copyLink(p)} className="flex items-center gap-1.5 border-2 border-[var(--ink)] px-3 py-1.5 text-sm font-bold"><Link2 size={14} />Copy public link</button>}
+                      {p.is_public && <button onClick={() => copyLink(p)} className="flex items-center gap-1.5 border-2 border-[var(--ink)] px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-bold"><Link2 size={14} />Copy link</button>}
                     </div>
                   )}
                 </div>

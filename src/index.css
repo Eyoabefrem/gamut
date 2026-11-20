@@ -5,10 +5,11 @@
 :root{--paper:#f4f4f0;--ink:#111111;--muted:#5a5a55;--line:rgba(17,17,17,.2);--c:#00aeef;--m:#ec008c;--y:#ffe600}
 .dark{--paper:#0e0e0d;--ink:#f4f4f0;--muted:#a3a39b;--line:rgba(244,244,240,.22)}
 
-body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;transition:background .3s,color .3s;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;transition:background .3s,color .3s;overflow-x:hidden;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
 .display{font-family:'Syne',sans-serif;font-weight:700;letter-spacing:-.04em;line-height:1}
 h1,h2{text-wrap:balance}
-.btn{display:inline-block;background:var(--ink);color:var(--paper);border:2px solid var(--ink);padding:.8rem 1.5rem;font-weight:700;transition:background .15s,color .15s,transform .15s}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);border:2px solid var(--ink);padding:.65rem 1.2rem;font-weight:700;transition:background .15s,color .15s,transform .15s;touch-action:manipulation;font-size:inherit}
+@media(min-width:640px){.btn{padding:.8rem 1.5rem}}
 .btn:hover{background:var(--m);color:#111;transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
 .btn:active{transform:none;box-shadow:none}
 .btn-ghost{background:transparent;color:var(--ink)}
